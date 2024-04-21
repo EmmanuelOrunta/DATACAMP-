@@ -1,0 +1,43 @@
+ GUIDED SAMPLE PRACTICAL PROJECT ANSWERS - DATACAMP
+ SELECT product_id, 
+	CASE WHEN category = '-' THEN 'Unknown' ELSE category END AS category,
+	animal,
+	CASE WHEN price = 'unlisted' then 0 else price::numeric end as price,
+	sales,
+	CASE WHEN rating IS NULL THEN 0 ELSE rating END AS rating,
+	INITCAP(size) as size
+FROM pet_supplies
+
+SELECT animal, 
+ 	repeat_purchase,
+	ROUND(AVG(sales)) as avg_sales,
+	ROUND(MIN(sales)) as min_sales,
+	ROUND(MAX(sales)) as max_sales
+FROM pet_supplies
+GROUP BY animal, repeat_purchase
+
+SELECT product_id, sales, rating
+FROM pet_supplies
+WHERE animal in ('Cat', 'Dog') and repeat_purchase = 1
+
+
+
+
+
+SELECT data_type
+FROM information_schema.columns
+WHERE table_name = 'products'
+    AND column_name = 'price';
+SELECT DISTINCT (public.products.brand)
+FROM public.products
+
+
+-- How to find distinct values and the count of them
+SELECT DISTINCT(column_name)
+FROM table_name
+
+-- How to find the datatype of a particular table and column 
+SELECT data_type
+FROM information_schema.columns
+WHERE table_name = 'your_table'
+    AND column_name = 'your_column';
